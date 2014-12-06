@@ -1,0 +1,97 @@
+<!-- Validation failure messages -->
+
+<% if @favorite.errors.any? %>
+  <% @favorite.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Simple full-width example-->
+
+<div class="page-header">
+  <h1>Add Favorite</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_favorite" class="form-horizontal">
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="col-sm-2 control-label">
+          User
+        </label>
+        <div class="col-sm-10">
+          <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @favorite.user_id %>">
+        </div>
+      </div>
+
+      <!-- Label and input for goodreads_book_id -->
+      <div class="form-group">
+        <label for="goodreads_book_id" class="col-sm-2 control-label">
+          Goodreads book
+        </label>
+        <div class="col-sm-10">
+          <input type="text" id="goodreads_book_id" name="goodreads_book_id" placeholder="Goodreads book" class="form-control" value="<%= @favorite.goodreads_book_id %>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" value="Create Favorite" class="btn btn-success">
+          or
+          <a href="/favorites">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- End simple full-width example-->
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Favorite</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_favorite" class="form-horizontal">
+          <!-- Label and input for user_id -->
+          <div class="form-group">
+            <label for="user_id" class="col-sm-2 control-label">
+              User
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @favorite.user_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for goodreads_book_id -->
+          <div class="form-group">
+            <label for="goodreads_book_id" class="col-sm-2 control-label">
+              Goodreads book
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="goodreads_book_id" name="goodreads_book_id" placeholder="Goodreads book" class="form-control" value="<%= @favorite.goodreads_book_id %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="submit" value="Create Favorite" class="btn btn-success">
+              or
+              <a href="/favorites">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

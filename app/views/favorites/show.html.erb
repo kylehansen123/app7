@@ -1,0 +1,96 @@
+<!-- Simple full-width example-->
+
+<div class="page-header">
+  <h1>Favorite #<%= @favorite.id %></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @favorite.user_id %></dd>
+
+      <dt>Book ID</dt>
+      <dd><%= @favorite.goodreads_book_id %></dd>
+
+      <dt>Book Title</dt>
+      <dd>Test</dd>
+
+      <dt>Book Author</dt>
+      <dd>Test</dd>
+
+      <dt></dt>
+      <dd>
+        <div class="btn-group">
+          <a href="/favorites" class="btn btn-primary">
+            <i class="fa fa-chevron-left"></i>
+          </a>
+
+          <a href="/favorites/<%= @favorite.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+
+          <a href="/delete_favorite/<%= @favorite.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </dd>
+    </dl>
+
+  </div>
+</div>
+
+<!-- End simple full-width example-->
+
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Favorite #<%= @favorite.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>User</dt>
+              <dd><%= @favorite.user_id %></dd>
+
+              <dt>Book ID</dt>
+              <dd><%= @favorite.goodreads_book_id %></dd>
+
+                <% book_id_search = URI.encode("576") %>
+                <% url_of_book_id_search = "https://www.goodreads.com/book/show/" + book_id_search + "?format=xml&key=" + @key %>
+                <% raw_book_id_data = open(url_of_book_id_search).read %>
+                <% @parsed_book_id_data = Nokogiri::XML(raw_book_id_data) %>
+                <%= book_id_results = @parsed_book_id_data.css("GoodreadsResponse") %>
+
+              <dt>Book Title</dt>
+              <dd><%= book_id_results.children.children.children[4].text %></dd>
+
+              <dt>Book Author</dt>
+              <dd><%= book_id_results.children.children.children.children.children[1] %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/favorites" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
+              <a href="/favorites/<%= @favorite.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a href="/delete_favorite/<%= @favorite.id %>" class="btn btn-danger">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

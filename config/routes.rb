@@ -1,4 +1,44 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+  root 'favorites#index'
+
+  get("/search", { :controller => "app", :action => "search" })
+
+  # Routes for the Favorite resource:
+  # CREATE
+  get('/favorites/new', { :controller => 'favorites', :action => 'new' })
+  get('/create_favorite', { :controller => 'favorites', :action => 'create' })
+
+  # READ
+  get('/favorites', { :controller => 'favorites', :action => 'index' })
+  get('/favorites/:id', { :controller => 'favorites', :action => 'show' })
+
+  # UPDATE
+  get('/favorites/:id/edit', { :controller => 'favorites', :action => 'edit' })
+  get('/update_favorite/:id', { :controller => 'favorites', :action => 'update' })
+
+  # DELETE
+  get('/delete_favorite/:id', { :controller => 'favorites', :action => 'destroy' })
+  #------------------------------
+
+  # Routes for the User resource:
+  # CREATE
+  get('/users/new', { :controller => 'users', :action => 'new' })
+  get('/create_user', { :controller => 'users', :action => 'create' })
+
+  # READ
+  get('/users', { :controller => 'users', :action => 'index' })
+  get('/users/:id', { :controller => 'users', :action => 'show' })
+
+  # UPDATE
+  get('/users/:id/edit', { :controller => 'users', :action => 'edit' })
+  get('/update_user/:id', { :controller => 'users', :action => 'update' })
+
+  # DELETE
+  get('/delete_user/:id', { :controller => 'users', :action => 'destroy' })
+  #------------------------------
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

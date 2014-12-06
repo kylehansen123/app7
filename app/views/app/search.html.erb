@@ -1,0 +1,54 @@
+<h1>Results</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Book ID</th>
+          <th>Book title</th>
+          <th>Author ID</th>
+          <th>Author name</th>
+          <th>Published year</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @result.results.work.each do |work| %>
+          <tr>
+            <td><%= work.best_book.id %></td>
+            <td><%= work.best_book.title %></td>
+            <td><%= work.best_book.author.id %></td>
+            <td><%= work.best_book.author.name %></td>
+            <td><%= work.original_publication_year %></td>
+            <td>
+              <form action="/create_favorite" class="form-horizontal">
+
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="user1">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <input type="hidden" id="goodreads_book_id" name="goodreads_book_id" placeholder="Book" class="form-control" value="<%= work.best_book.id %>">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" value="Add to Favorites" class="btn btn-success">
+                  </div>
+                </div>
+              </form>
+              </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
